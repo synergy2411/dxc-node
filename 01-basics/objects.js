@@ -120,10 +120,10 @@ magicShoe.size = 10;
 // console.log(magicShoe)              // { size : 10 } 
 // console.log(magicShoe.construction) // 'Slipper'
 
-console.log(Shoe.isPrototypeOf(magicShoe));         // true
-console.log(magicShoe.isPrototypeOf(Shoe));         // false
-console.log(Object.prototype.isPrototypeOf(Shoe))   // true
-console.log(Object.prototype.isPrototypeOf(magicShoe))   // true
+// console.log(Shoe.isPrototypeOf(magicShoe));         // true
+// console.log(magicShoe.isPrototypeOf(Shoe));         // false
+// console.log(Object.prototype.isPrototypeOf(Shoe))   // true
+// console.log(Object.prototype.isPrototypeOf(magicShoe))   // true
 
 // JavaScript is Object based language
 
@@ -133,3 +133,35 @@ console.log(Object.prototype.isPrototypeOf(magicShoe))   // true
 // Lexical Scope
 // Scope Chaining
 // Object Hierarchy
+
+// Closures - process of binding the outer scope variables with inner functions
+
+// function testClosure(){
+//     var x = 4;
+//     return function(){
+//         return ++x;
+//     }
+// }
+
+// // console.log(testClosure());          // ?
+// var nestedFunc = testClosure();
+// console.log(nestedFunc());          // 5
+// console.log(nestedFunc());          // ?
+// console.log(nestedFunc());          // ?
+
+
+function buildTicket(transport){
+    var numOfPass = 0;
+    return function(passName){
+        return "Hello " + passName + "\nYou are going via " + transport + 
+            "\nYour Ticket ID #" + (++numOfPass)
+    }
+}
+
+var ship = buildTicket("Ship");
+
+console.log(ship("Foo"))
+console.log(ship("Bar"))
+
+var car = buildTicket("Car");
+console.log(car("Baz"));        // ?
