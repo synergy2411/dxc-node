@@ -185,17 +185,15 @@
 
 
 // REST - creates the collection - always used in function parameters
+    // - has to be the last argument in parameter list
 
-function demo(name, ...params){
-    console.log(params[0]);         // 
-}
+// function demo(name, email, ...params){
+//     console.log(params[0]);         // 
+// }
 
-// demo("foo")
-// demo("foo", "test@test.com")
-demo("foo", "test@test.com", true)
-
-
-
+// // demo("foo")
+// // demo("foo", "test@test.com")
+// demo("foo", "test@test.com", true)
 
 
 
@@ -210,4 +208,118 @@ demo("foo", "test@test.com", true)
 
 
 
-// - Promises 
+
+
+
+// - Promises : to handle async JS behaviour
+
+// - Producer Code -> can return the promise result (resolved - success / rejected - failure)
+
+// function timer(ms){
+//     const promise = new Promise((resolve, reject) => {
+//         if(ms > 3000){
+//             setTimeout(() => {
+//                 resolve({message : "RESOLVED"})
+//             }, ms);
+//         }else{
+//             reject(new Error("Too large!!"))
+//         }
+//     });
+//     return promise;
+// }
+
+// - Consumer Code -> consumes promises using 'then()' | 'catch()' 
+// - Consumer Code -> async...await keyword
+
+// async function callTimer(){
+//     try{
+//     const result = await timer(2000);
+//     console.log("THE RESULT - ", result);
+//     }catch(err) {
+//         console.log("THE ERROR - ", err);
+//     }
+// }
+
+// callTimer();
+
+
+
+// function callTimer(){
+//     timer(4000)
+//         .then(result => {
+//             console.log("THE RESULT - ", result);
+//             return result.message;
+//         }).then(response => {
+//             console.log("SECOND THEN - ", response);
+//         }) 
+//         .catch(err => console.log(err));                                // Reject
+// }
+
+
+// callTimer();
+
+
+
+
+
+
+
+
+
+// MACRO Task - Timers, any Events, XHR call
+
+// second tick
+setTimeout(() => {
+    console.log("TIMER");
+    Promise.resolve().then(() => {console.log("TIMER PROMISE RESOLVED")})
+}, 0)
+
+// MICRO Tasks - Promises only
+// Second tick
+Promise.resolve().then(() => {
+    // MACRO TASK - next tick
+    // third tick
+    // setTimeout(() => {
+    //     console.log("RESOLVED");
+    // }, 0)
+    console.log("RESOLVED")
+})
+
+// First Tick
+console.log("LOGGING");
+
+// LOGGING -> TIMER -> TIMER PROMISE RESOLVED -> RESOLVED
+
+// LOGGING -> RESOLVED -> TIMER -> TIMER PROMISE
+
+
+
+
+
+
+
+
+// No new MACRO task will be executed until all MICRO tasks completed
+
+
+// LOGGING -> RESOLVED -> TIMER
+
+// LOGGING -> TIMER -> RESOLVED
+
+
+
+// MICRO Tasks
+
+// MACRO Task
+
+
+
+
+
+
+
+
+
+
+
+
