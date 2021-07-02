@@ -74,3 +74,13 @@ Shadom DOM - Angular - HTML5 API
 > @babel/core @babel/cli @babel/preset-env @babel/node
 > babel.config.json
 
+
+# Download / clone project -
+> npm install : installs all the packages mentioned in package json file
+
+
+# Notes-App
+- node index.js add --title="" --body=""
+- node index.js read --title=""
+- node index.js remove --title=""
+- node index.js list

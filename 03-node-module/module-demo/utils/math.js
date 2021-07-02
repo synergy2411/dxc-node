@@ -8,7 +8,7 @@ function getLuckyNumber (){
     return MAGIC_NUMBER;
 }
 
-module.exports = {add : add}
+module.exports = {add, getLuckyNumber}
 
 
 
