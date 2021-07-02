@@ -1,0 +1,17 @@
+{
+  "name": "npm-demo-dxc",
+  "version": "1.0.0",
+  "description": "My first package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sumit Khandelwal",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.1" 
+  },
+  "devDependencies": {
+    "jasmine": "^3.7.0"
+  }
+}
