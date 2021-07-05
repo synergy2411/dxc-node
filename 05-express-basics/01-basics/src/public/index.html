@@ -27,6 +27,8 @@
                                 <button class="btn btn-primary btn-block" id="btnForecast">Forecast</button>
                             </div>
                         </div>
+                        <hr>
+                        <div id="message"></div>
                     </div>
                 </div>
             </div>
@@ -37,12 +39,26 @@
     <script>
         const txtAddress = document.getElementById("txtAddress");
         const btnForecast = document.getElementById("btnForecast");
+        const messageDiv = document.getElementById("message")
 
         btnForecast.addEventListener("click", event => {
             event.preventDefault();     // 
-            fetch(`/location?location=${txtAddress.value}`)
-                .then(response => response.json())
-                .then(result => console.log(result));
+            if(txtAddress.value.trim() ===""){
+                return;
+            }else{
+                fetch(`/location?location=${txtAddress.value}`)
+                    .then(response => response.json())
+                    .then(result => {
+                        messageDiv.innerHTML = `
+                            <p>
+                            The temperature at place ${result.placeName} is ${result.temperature}.
+                            It is predicted that the day will be ${result.summary}!!
+                            <p>
+                        `
+                    }).catch(err => {
+                        messageDiv.innerHTML = `Some problem ${err}`
+                    });
+            }
         })
     </script>
 

@@ -1,5 +1,7 @@
 const express = require("express");
 const path = require("path");
+const { getLatLng } = require("./utils/latLng");
+const { getForecast } = require("./utils/forecast");
 
 const app = express();
 
@@ -9,11 +11,19 @@ app.get("/weather", (req, res) => {
     res.sendFile(path.join(__dirname, "public/index.html"));
 })
 
-app.get("/location", (req, res) =>{
+app.get("/location", async (req, res) =>{
     if(req.query){
         const { location } = req.query;
-        console.log("LOCATION ", location);
-        return res.send({message : "received"})
+        try{
+        const { lat, lng, placeName } = await getLatLng(location);
+        const { temperature, summary } = await getForecast(lat, lng);
+        return res.send({
+            message : "received",
+            lat, lng, placeName, temperature, summary
+        })
+        }catch(err){
+            return res.send({err});
+        }
     }else{
         return res.send({message : "Query not found."})
     }
