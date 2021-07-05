@@ -94,3 +94,13 @@ Shadom DOM - Angular - HTML5 API
 # Typescript support
 - types/node
 - typescript
+
+
+
+# Todo Routes
+
+GET /todos      - get all todos items
+POST /todos     - create new item in the todoCollection 
+GET /todos/{id} - get single todo item based upon the id
+DELETE /todos/{id}  - remove the item from the collection    
+PATCH /todos/{id}   - update the todo Item
