@@ -89,3 +89,8 @@ Shadom DOM - Angular - HTML5 API
 - Promises
 - Callbacks
 - Async... await
+
+
+# Typescript support
+- types/node
+- typescript
