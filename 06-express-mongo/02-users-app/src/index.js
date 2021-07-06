@@ -1,7 +1,6 @@
 const { PORT } = require("../environment");
 const express = require("express");
 
-const UserModel = require("./model/user");
 const UserRouter = require("./routes/user.routes");
 
 const app = express();
