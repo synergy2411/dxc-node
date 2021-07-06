@@ -107,3 +107,6 @@ PATCH /todos/{id}   - update the todo Item
 
 
 # Mongo URL : "mongodb+srv://sumitk:krsna123@cluster0.e9xsq.mongodb.net"
+
+# Model - ODM
+-> User - name, email, age

@@ -1,6 +1,17 @@
 const { PORT } = require("../environment");
 const express = require("express");
 
+const UserModel = require("./model/user");
+const UserRouter = require("./routes/user.routes");
+
 const app = express();
 
-app.listen(PORT, () => {console.log("Server started at PORT : ", PORT)})
+app.use(express.json());
+
+app.use("/users", UserRouter)
+// app.use("/posts", PostRouter)
+
+app.listen(PORT, () => {
+    console.log("Server started at PORT : ", PORT);
+    require("./db");
+})
