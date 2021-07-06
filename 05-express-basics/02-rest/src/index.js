@@ -8,6 +8,8 @@ app.use(express.json());
 
 let todoCollection = [];
 
+// let notes = [{title : "", body: "", id: ""}]
+
 app.get("/todos", (req, res) => {
   res.send({ data: todoCollection });
 });

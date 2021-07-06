@@ -104,3 +104,6 @@ POST /todos     - create new item in the todoCollection
 GET /todos/{id} - get single todo item based upon the id
 DELETE /todos/{id}  - remove the item from the collection    
 PATCH /todos/{id}   - update the todo Item
+
+
+# Mongo URL : "mongodb+srv://sumitk:krsna123@cluster0.e9xsq.mongodb.net"
