@@ -1,5 +1,6 @@
 const UserModel = require("../model/user");
 const bcrypt = require("bcryptjs");
+const fs = require("fs");
 
 const findAllUser = async (req, res) => {
   try {
@@ -16,15 +17,28 @@ const findAllUser = async (req, res) => {
   }
 };
 const createUser = async (req, res) => {
+  if(req.file){
+    console.log("FILE - ", req.file)
+  }
   if (req.body) {
+    console.log("BODY - ", req.body)
     const { password } = req.body;
     try {
       const hashedPassword = await bcrypt.hash(password, 12)
-      const newUser = new UserModel({ ...req.body, password : hashedPassword });
+      
+      const newUser = new UserModel({ 
+        ...req.body, 
+        password : hashedPassword,
+        avatar : {
+          data : fs.readFileSync(__dirname + "/../uploads/"+req.file.filename),
+          contentType : req.file.mimetype
+        }
+      });
       const user = await newUser.save();
       return res.send({ ...user._doc, password : null }).status(201);
     } catch (err) {
-      return res.status(501);
+      console.log(err);
+      return res.status(501).send(err);
     }
   } else {
     return res.send({ message: "body not found" });
@@ -36,7 +50,11 @@ const findOneUser = async (req, res) => {
   try {
     const userFound = await UserModel.findById(id);
     if (userFound) {
-      return res.send({ ...userFound._doc, password : null });
+      return res.send({ 
+        ...userFound._doc, 
+        password : null,
+        avatar : `data:image/${userFound._doc.avatar.contentType};base64,${userFound._doc.avatar.data.toString('base64')}`
+      });
     } else {
       return res.send({ message: "User not found for ID -", id });
     }

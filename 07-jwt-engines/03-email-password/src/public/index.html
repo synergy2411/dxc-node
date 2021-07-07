@@ -37,17 +37,44 @@
                   <label for="password">Password : </label>
                   <input class="form-control" type="password" name="password" />
                 </div>
+                <!-- Avatar -->
+                <div class="form-group">
+                  <label for="avatar">Select your best pic here</label>
+                  <input type="file" class="form-control" name="avatar" />
+                </div>
                 <!-- Button -->
-                <input
-                  type="submit"
-                  value="Submit Form"
-                  class="btn btn-primary"
-                />
+                <div class="form-group">
+                  <input
+                    type="submit"
+                    value="Submit Form"
+                    class="btn btn-primary"
+                  />
+                </div>
               </form>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <hr>
+    <div class="container">
+        <button onclick="displayImage()" class="btn btn-success">Show Image</button>
+        <!-- display the image -->
+    </div>
+    <script>
+        function displayImage(){
+            fetch("/users/60e5a121de8a7f83e477bf78")
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result);
+                    const img = document.createElement("img")
+                    img.src = result.avatar;
+                    img.style.width = "200px";
+                    img.style.height = "200px";
+                    document.body.append(img);
+
+                })
+        }
+    </script>
   </body>
 </html>
