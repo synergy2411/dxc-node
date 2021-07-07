@@ -2,7 +2,7 @@ const { PORT } = require("../environment");
 const express = require("express");
 const multer = require("multer");
 
-const UserRouter = require("./routes/user.routes");
+const UserRouter = require("./router/user.routes");
 
 const upload = multer();
 const app = express();
