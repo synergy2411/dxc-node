@@ -110,3 +110,12 @@ PATCH /todos/{id} & req.body  - update the todo Item
 
 # Model - ODM
 -> User - name, email, age
+-> Post - title : String, body : String, published : Boolean
+
+- email, password, avatar(image - Binary format)
+
+Topics
+------
+-> Blob understanding
+-> redux intro
+-> Other DB connection
