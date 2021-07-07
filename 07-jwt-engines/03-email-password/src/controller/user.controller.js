@@ -17,15 +17,10 @@ const findAllUser = async (req, res) => {
   }
 };
 const createUser = async (req, res) => {
-  if(req.file){
-    console.log("FILE - ", req.file)
-  }
   if (req.body) {
-    console.log("BODY - ", req.body)
     const { password } = req.body;
     try {
       const hashedPassword = await bcrypt.hash(password, 12)
-      
       const newUser = new UserModel({ 
         ...req.body, 
         password : hashedPassword,
