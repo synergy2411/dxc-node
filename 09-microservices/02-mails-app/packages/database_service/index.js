@@ -10,5 +10,7 @@ app.use(express.json())
 app.route("/mails")
     .get(mails.getMails)
     .post(mails.createMail)
+app.route("/mails/:id")
+    .get(mails.getMail)
 
 app.listen(PORT, () => console.log("Database Service started at PORT : ", PORT))

@@ -21,6 +21,13 @@ type User {
 }
 type RootMutation {
     createMail(data : CreateMailInput) : Mail
+    deleteMail(id : String) : Mail
+    updateMail(id : String, data : UpdateMailInput ) : Mail
+}
+input UpdateMailInput {
+    subject : String 
+    content : String 
+    receiver : String
 }
 input CreateMailInput {
     subject : String

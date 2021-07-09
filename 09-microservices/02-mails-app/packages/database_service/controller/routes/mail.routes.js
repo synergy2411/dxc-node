@@ -21,7 +21,19 @@ const createMail = async (req, res) => {
     }
 }
 
+const getMail = async (req, res) => {
+    const { id }= req.params;
+    try{
+    const foundMail = await MailModel.findById(id)
+    return res.send({...foundMail._doc})
+    }catch(e){
+        console.log(e)
+        return res.send(e)
+    }
+}
+
 module.exports = {
     getMails,
-    createMail
+    createMail,
+    getMail
 }

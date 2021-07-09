@@ -7,6 +7,7 @@
 // ]
 
 const axios = require("axios").default;
+const {SERVICE_DB_PORT} = process.env;
 
 module.exports = {
   hello: () => {
@@ -21,27 +22,31 @@ module.exports = {
     };
   },
   mails : async () => {
-    const result = await axios.get("http://localhost:4000/mails")
+    // const result = await axios.get("http://localhost:4040/mails")
+    const result = await axios.get(`http://localhost:${SERVICE_DB_PORT}/mails`)
     console.log(result.data)
     return result.data
     // return mails;
   },
-  createMail: (args) => {
-    let mail = {
-        _id : v4(),
-        ...args.data
+  createMail: async (args) => {
+    try{
+    const mail = await axios.post("http://localhost:4040/mails", args.data)
+    console.log(mail.data)  
+    return mail.data
+  }catch(e){
+      throw new Error(e)
     }
-    mails.push(mail);
-    return mail;
   },
-  mail : (args) => {
+  mail : async (args) => {
       const { id } = args;
-      console.log("ID - ", id);
-      const foundMail = mails.find(mail => mail._id === id)
-      if(foundMail){
-          return foundMail;
-    }else{
-          throw new Error("Not found for ID - ", id)
+      const mail = await axios.get(`http://localhost:4040/mails/${id}`)
+      if(mail){
+        return mail.data;
+      }else{
+        throw new Error("Not Found")
       }
-  }
+  },
+  updateMail : () => {},
+  deleteMail : () => {}
+
 };
