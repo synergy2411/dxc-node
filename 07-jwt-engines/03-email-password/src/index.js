@@ -23,7 +23,8 @@ app.get("/", (req, res) => {
 app.post("/login", (req, res) => {
   if (req.body) {
     const { email, password } = req.body;
-    // Verify the user from data
+    // Verify the user from database
+    // bcrypt.compare(hashedPassword, password)
     if (email && password) {
       const token = jwt.sign({ id: 123 }, MY_SUPER_SECRET_KEY);
       console.log("LOGIN - ", token);
@@ -51,17 +52,18 @@ const ensureToken = (req, res, next) => {
   }
 };
 
-app.get("/api/protected", ensureToken, (req, res) => {
-
-    jwt.verify(req.token, MY_SUPER_SECRET_KEY, (err, decode)=>{
-        if(err){
-            return res.send({ message: "not authenticated" });
-        }
-        console.log("DECODE - ", decode);
-        return res.send({ message: "authenticated" });
-    });
-    
+const tokenVerification = (req, res,next) => {
+  jwt.verify(req.token, MY_SUPER_SECRET_KEY, (err, decode)=>{
+    if(err){
+        return res.send({ message: "not authenticated" });
+        // next();
+    }
+    console.log("DECODE - ", decode);
+    return res.send({ message: "authenticated" });
 });
+}
+
+app.get("/api/protected", ensureToken, tokenVerification);
 
 app.listen(PORT, () => {
   console.log("Server started at PORT : ", PORT);

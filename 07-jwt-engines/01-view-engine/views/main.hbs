@@ -1,1 +1,29 @@
-<h1>Contents coming soon ... </h1>
+<div class="container">
+  <h3>Awesome Posts</h3>
+
+  <h4>{{ fakeApi }}</h4>
+
+  <div class="row">
+    {{#each posts}}
+    <div class="col-md-3 col-sm-4">
+      <div class="card">
+        <img src="{{this.image}}" alt="" />
+        <div class="card-body">
+          <h5 class="text-center">Posted By : {{showNameInUpperCase this}}</h5>
+          {{#if this.comments}}
+            <ul class="list-group">
+              {{#each this.comments}}
+                <li class="list-group-item">
+                  {{this}}
+                </li>
+              {{/each}}
+            </ul>
+            {{else}}
+            <p>Be first to comment on this post</p>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>

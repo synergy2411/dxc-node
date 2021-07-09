@@ -119,3 +119,71 @@ Topics
 -> Blob understanding
 -> redux intro
 -> Other DB connection
+-> Debugging - Debugger
+-> Webpack create bundle
+
+
+
+Monolithic App - All set of info/functionality at one place
+- db connection > lost
+- entire app will not work
+
+/users - access the data from DB and return users
+
+/differentRoute - logging purpose
+
+
+
+
+Microservices : 
+- loosely coupled
+- set of services (specific functionality)
+- interconnected
+
+
+Weather App -> 
+-> express server -> Mapbox Server (lat/lng) -> darksky Server (forecast)
+
+
+# Lerna - 
+    - npx lerna init --independent
+
+
+# GraphQL API Gateway dependencies
+    - express
+    - graphql
+    - express-graphql
+    - axios
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# AWS deployment tutorial : 
+    - https://www.youtube.com/watch?v=b0g-FJ5Zbb8
