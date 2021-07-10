@@ -129,7 +129,37 @@ Topics
 
 
 -> Debugging - Debugger
+
+
 -> Webpack create bundle
+
+# DEPENDENCIES
+- Webpack
+- Webpack-cli
+- Webpack-node-extenals
+
+- @babel/core
+- @babel/preset-env
+- @babel-loader
+
+- html-loader
+- html-webpack-plugin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- SYNERGY2411@OUTLOOK.COM -->
 
