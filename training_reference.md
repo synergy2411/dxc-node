@@ -118,10 +118,20 @@ Topics
 ------
 -> Blob understanding
 -> redux intro
--> Other DB connection
+-> Other DB connection - Postgres - "pg"
+    - Hostname
+    - Database
+    - User
+    - Password
+-> Heroku - Postgres -> NodeJS App -> pg (driver)
+
+
+
+
 -> Debugging - Debugger
 -> Webpack create bundle
 
+<!-- SYNERGY2411@OUTLOOK.COM -->
 
 
 Monolithic App - All set of info/functionality at one place
@@ -180,10 +190,3 @@ Weather App ->
 
 
 
-
-
-
-
-
-# AWS deployment tutorial : 
-    - https://www.youtube.com/watch?v=b0g-FJ5Zbb8
